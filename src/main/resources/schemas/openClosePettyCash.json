@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "This form is for register a open cash",
+  "title": "Opening Cash",
+  "type": "object",
+  "required": [
+    "responsibleCode",
+    "amount",
+    "currencyCode",
+    "houseCode",
+    "description"
+  ],
+  "properties": {
+    "responsibleCode": {
+      "title": "Responsible Code",
+      "type": "string",
+      "minLength": 3,
+      "input": {
+        "type": "hidden",
+        "source": {
+          "service": "getUserInformation",
+          "type": "object",
+          "filters": [
+            "userCode"
+          ],
+          "value": "code"
+        }
+      }
+    },
+    "userFullName": {
+      "title": "Name Of Person Filling Out The Form",
+      "readOnly": true,
+      "type": "string",
+      "input": {
+        "type": "text",
+        "length": "short",
+        "source": {
+          "service": "getUserInformation",
+          "type": "object",
+          "filters": [
+            "userCode"
+          ],
+          "value": "fullName"
+        }
+      }
+    },
+    "houseCode": {
+      "type": "string",
+      "title": "House",
+      "minLength": 3,
+      "input": {
+        "source": {
+          "service": "getActiveHouses",
+          "type": "list",
+          "filters": [
+            "statusCode"
+          ],
+          "value": [
+            "code",
+            "name"
+          ]
+        },
+        "type": "select"
+      }
+    },
+    "amount": {
+      "title": "Amount",
+      "type": "number",
+      "minimum": 1,
+      "description": "Amount description",
+      "input": {
+        "type": "number"
+      }
+    },
+    "currencyCode": {
+      "title": "Currency",
+      "type": "string",
+      "minLength": 3,
+      "input": {
+        "source": {
+          "service": "getActiveCurrencies",
+          "type": "list",
+          "filters": [
+            "statusCode"
+          ],
+          "value": [
+            "code",
+            "name|symbol"
+          ]
+        },
+        "type": "select"
+      }
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "minLength": 3,
+      "maxLength": 250,
+      "input": {
+        "type": "text",
+        "length": "long"
+      }
+    }
+  }
+}

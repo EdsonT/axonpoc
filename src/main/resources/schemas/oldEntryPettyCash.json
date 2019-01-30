@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Opening Cash Minimal Data",
+  "description": "This form is for register a open cash",
+  "type": "object",
+  "required": [
+    "houseCode",
+    "responsibleCode",
+    "currencyCode",
+    "amount",
+    "accountCode",
+    "movementCode",
+    "requestDate"
+  ],
+  "properties": {
+    "houseCode": {
+      "type": "string",
+      "title": "House*",
+      "description": "house description",
+      "minLength": 3,
+      "maxLength": 60,
+      "input": {
+        "type": "select",
+        "source": {
+          "service": "security",
+          "path": "/sources/governance/houses",
+          "field": "name"
+        }
+      }
+    },
+    "responsibleCode": {
+      "type": "string",
+      "title": "User Code*",
+      "description": "Responsible Code description",
+      "minLength": 3,
+      "maxLength": 60,
+      "input": {
+        "type": "text",
+        "length": "short",
+        "hidden": true,
+        "source": {
+          "service": "security",
+          "path": "/sources/users",
+          "field": "code"
+        }
+      }
+    },
+    "currencyCode": {
+      "type": "string",
+      "title": "Currency*",
+      "description": "Currency description",
+      "minLength": 3,
+      "maxLength": 60
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 1,
+
+      "title": "Amount*",
+      "description": "Amount description",
+      "input": {
+        "type": "number"
+      }
+    },
+    "description": {
+      "type": "string",
+      "title": "Description*",
+      "description": "Operation description",
+      "minLength": 3,
+      "maxLength": 100,
+      "input": {
+        "type": "text"
+      }
+    },
+    "accountCode": {
+      "type": "string",
+      "title": "Account*",
+      "description": "Account description",
+      "minLength": 2,
+      "maxLength": 60,
+      "input": {
+        "type": "select",
+        "source": {
+          "service": "security",
+          "path": "/sources/governance/houses",
+          "field": "name"
+        }
+      }
+    },
+    "movementCode": {
+      "type": "string",
+      "title": "Movement*",
+      "description": "Movement description",
+      "minLength": 1,
+      "maxLength": 60,
+      "input": {
+        "type": "select",
+        "source": {
+          "service": "security",
+          "path": "/sources/governance/houses",
+          "field": "name"
+        }
+      }
+    },
+    "entityCode": {
+      "type": "string",
+      "title": "Expense*",
+      "description": "Expense description",
+      "minLength": 3,
+      "maxLength": 60,
+      "input": {
+        "type": "select",
+        "source": {
+          "service": "security",
+          "path": "/sources/governance/houses",
+          "field": "name"
+        }
+      }
+    },
+    "requestDate": {
+      "type": "string",
+      "title": "Request Date: ",
+      "description": "Please use the 24 hour clock:  eg. 16.00 \u003d 4.00pm. This date is set to the date and time of the form being opened.  You can change the date and time, but only to dates BEFORE the current date and time,not later.",
+      "input": {
+        "type": "date"
+      }
+    }
+  }
+}
